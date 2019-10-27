@@ -1,0 +1,5 @@
+{:deps {com.bhauman/figwheel-main {:mvn/version "0.2.3"}
+        ulmus {:local/root "/home/jkross/ulmus"}
+        cljsjs/three {:mvn/version "0.1.01-1"}
+        cljsjs/three-examples {:mvn/version "0.0.91-0"}}
+ :paths ["src" "target" "resources"]}
