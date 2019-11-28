@@ -1,5 +1,5 @@
 (ns entr.components
-  (:require [ulmus.core :as ulmus]))
+  (:require [ulmus.signal :as ulmus]))
 
 (defrecord Transform [k position-$ rotation-$ scale-$])
 
@@ -41,5 +41,5 @@
 
 (defn statically
   [comp-fn & args]
-  (apply comp-fn (map ulmus/constant-signal args)))
+  (apply comp-fn (map ulmus/constant args)))
 

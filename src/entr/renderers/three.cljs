@@ -7,6 +7,7 @@
 
 (defn init-box-mesh!
   [obj-3d c] 
+  (println "Bos mesh:" c)
   (let [mesh
         (js/THREE.Mesh.
           (js/THREE.BoxGeometry.
@@ -45,6 +46,9 @@
 
 (defn init-obj-mesh!
   [obj-3d c]
+  ; look here
+  ; model-path-$ not set yet when initing
+  (println "Loading:" @(:model-path-$ c))
   (.load (js/THREE.OBJLoader.) @(:model-path-$ c)
          (fn [mesh]
            (.load (js/THREE.TextureLoader.)
@@ -91,12 +95,13 @@
 
 (defn update-component!
   [renderer obj-3d component-type component]
-  (condp instance? component
-    component/Transform
-    (update-transform! obj-3d component)
-    component/Color
-    (update-color! obj-3d component)
-    false))
+  (when obj-3d
+    (condp instance? component
+      component/Transform
+      (update-transform! obj-3d component)
+      component/Color
+      (update-color! obj-3d component)
+      false)))
 
 (defrecord ThreeRenderer
   [kind webgl-ref scene-ref camera-ref]
